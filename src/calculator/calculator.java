@@ -11,20 +11,42 @@ package calculator;
  */
 public class calculator extends javax.swing.JFrame {
 
-    /**
-     * Creates new form calculator
-     */
+    double num, ans;
+    int calculation;
+
     public calculator() {
         initComponents();
         jRadioButton1.setEnabled(false);
     }
 
+    public void arithemetic_operation() {
+        switch (calculation) {
+            case 1:
+                ans = num + Double.parseDouble(jTextField1.getText());  //addition
+                jTextField1.setText(Double.toString(ans));
+                break;
+            case 2:
+                ans = num - Double.parseDouble(jTextField1.getText()); //subtract
+                jTextField1.setText(Double.toString(ans));
+                break;
+            case 3:
+                ans = num * Double.parseDouble(jTextField1.getText());
+                 jTextField1.setText(Double.toString(ans));//multiply
+                 break;
+            case 4:
+                ans = num / Double.parseDouble(jTextField1.getText()); //divide
+                jTextField1.setText(Double.toString(ans));
+
+                break;
+        }
+    }
+
     public void enable() {
         jTextField1.setEnabled(true);
-        
-         jRadioButton1.setEnabled(false);
-         jRadioButton2.setEnabled(true);
-         
+
+        jRadioButton1.setEnabled(false);
+        jRadioButton2.setEnabled(true);
+
         jButton1.setEnabled(true);
         jButton2.setEnabled(true);
         jButton3.setEnabled(true);
@@ -50,7 +72,7 @@ public class calculator extends javax.swing.JFrame {
     public void disable() {
         jTextField1.setEnabled(false);
         jRadioButton1.setEnabled(true);
-       
+
         jButton1.setEnabled(false);
         jButton2.setEnabled(false);
         jButton3.setEnabled(false);
@@ -104,6 +126,7 @@ public class calculator extends javax.swing.JFrame {
         jButton17 = new javax.swing.JButton();
         jButton18 = new javax.swing.JButton();
         jButton19 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         jButton14.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton14.setText("<--");
@@ -285,6 +308,10 @@ public class calculator extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setForeground(new java.awt.Color(255, 51, 51));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel1.setToolTipText("");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -301,12 +328,6 @@ public class calculator extends javax.swing.JFrame {
                         .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton19, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -334,13 +355,24 @@ public class calculator extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE))))
+                            .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton19, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -392,7 +424,8 @@ public class calculator extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
-        jTextField1.setText(jTextField1.getText() + "=");
+        arithemetic_operation();
+        jLabel1.setText("");
     }//GEN-LAST:event_jButton19ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -444,19 +477,31 @@ public class calculator extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton15ActionPerformed
 
     private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
-        jTextField1.setText(jTextField1.getText() + "/");
+        num = Double.parseDouble(jTextField1.getText());
+        calculation = 4;
+        jTextField1.setText("");
+        jLabel1.setText(num + "/");
     }//GEN-LAST:event_jButton18ActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
-        jTextField1.setText(jTextField1.getText() + "*");
+        num = Double.parseDouble(jTextField1.getText());
+        calculation = 3;
+        jTextField1.setText("");
+        jLabel1.setText(num + "*");
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        jTextField1.setText(jTextField1.getText() + "-");
+        num = Double.parseDouble(jTextField1.getText());
+        calculation = 2;
+        jTextField1.setText("");
+        jLabel1.setText(num + "-");
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        jTextField1.setText(jTextField1.getText() + "+");
+        num = Double.parseDouble(jTextField1.getText());
+        calculation = 1;
+        jTextField1.setText("");
+        jLabel1.setText(num + "+");
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
@@ -464,22 +509,20 @@ public class calculator extends javax.swing.JFrame {
     }//GEN-LAST:event_jRadioButton2ActionPerformed
 
     private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
-       enable();
+        enable();
     }//GEN-LAST:event_jRadioButton1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       int length = jTextField1.getText().length();
-         int number = jTextField1.getText().length() -1;
-         String store;
-         if(length>0){
-             StringBuilder back = new StringBuilder(jTextField1.getText());
-             back.deleteCharAt(number);
-             store = back.toString();
-             jTextField1.setText(store);
-             
-             
-             
-         }
+        int length = jTextField1.getText().length();
+        int number = jTextField1.getText().length() - 1;
+        String store;
+        if (length > 0) {
+            StringBuilder back = new StringBuilder(jTextField1.getText());
+            back.deleteCharAt(number);
+            store = back.toString();
+            jTextField1.setText(store);
+
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -538,6 +581,7 @@ public class calculator extends javax.swing.JFrame {
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JTextField jTextField1;
